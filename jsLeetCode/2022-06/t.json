@@ -1,0 +1,6 @@
+{
+    "Params": "ruleName:device, actionId:1002",
+    "ResultData": "0ms",
+    "Content": "Transmit data to Table Store,instance:deviceStore,tableName:device_data,from IoT topic:/gay8b4zdRtR/TSL11/thing/event/property/post",
+    "Reason": "TableStore IllegalArgumentException:For input string: \"0.0\""
+}

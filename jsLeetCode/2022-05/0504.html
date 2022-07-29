@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function LinkedList(){
+    function Node(val){
+        this.val = val
+        this.next = null
+    }
+    var length = 0
+    var head = new Node(null)
+    var tail = head
+
+    // 插入
+    this.append = function(val) {
+        var node = new Node(val)
+        var current
+        // 循环链表插入
+        current = tail
+        current.next = node
+        node.next = head.next
+        tail = current.next
+        tail.next = head.next
+        length++
+    }
+    this.getHead = function(){
+        return head.next
+    }
+    this.getTail = function(){
+        return tail
+    }
+    this.getLength = function(){
+        return length
+    }
+    this.delLength = function(){
+        length--
+    }
+}
+ var findTheWinner = function(n, k) {
+    var L = new LinkedList()
+    for(let i = 0; i<n;i++) {
+        L.append(i+1)
+    }
+    var p = L.getHead()
+    // console.log(p)
+    var pre = L.getTail()
+    // console.log(pre)
+    while(L.getLength() > 1) {
+        let count = k
+        while(count > 1 ) {
+            p = p.next
+            pre = pre.next
+            count--
+        }
+        // 删除就是
+        pre.next = p.next
+        console.log(p)
+        p = pre.next
+        L.delLength()
+    }
+    return p.val
+};
+console.log(findTheWinner(6,1))
+    </script>
+</body>
+</html>

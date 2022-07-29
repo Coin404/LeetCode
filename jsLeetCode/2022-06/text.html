@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const dom = new Proxy({}, {
+            get(target, property) {
+                // atrrs默认为空对象
+                return function (attrs = {}, ...children) {
+                    console.log(attrs,children)
+                    console.log(property)
+                    const el = document.createElement(property);
+                    for (let prop of Object.keys(attrs)) {
+                        // 创建一个prop节点，比如a节点，ul节点，值为attrs里面的值
+                        el.setAttribute(prop, attrs[prop]);
+                    }
+                    for (let child of children) {
+                        // 将后面的所有内容地节点传入el中，如果是处理好的节点直接加入
+                        // 如果是字符串就处理成字符加入节点
+                        if (typeof child === "string") {
+                            child = document.createTextNode(child);
+                        }
+                        el.appendChild(child);
+                    }
+                    console.log(el)
+                    return el;
+                };
+            },
+        });
+
+        const el = dom.div({},
+        // 第一个参数，字符串
+            "Hello, my name is ",
+            dom.a({
+                href: "//example.com"
+            }, "Mark"),
+            ". I like:",
+            dom.ul({},
+                dom.li({}, "The web"),
+                dom.li({}, "Food"),
+                dom.li({}, "…actually that's it")
+            )
+        );
+
+        document.body.appendChild(el);
+    </script>
+</body>
+
+</html>
