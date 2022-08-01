@@ -6,6 +6,8 @@
  * @return {string}
  */
 
+// 68ms
+// 43.3MB
 // - 换成 +-
 // 按照 + 分割
 var fractionAddition = function (expression) {
