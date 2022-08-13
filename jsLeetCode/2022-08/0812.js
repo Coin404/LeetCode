@@ -8,7 +8,7 @@
  * @return {number[][]}
  */
 // 如何分配收集？
-// 80ms
+// 72ms
 // 46.1MB
 var groupThePeople = function (groupSizes) {
   const ans = [];
