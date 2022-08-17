@@ -7,8 +7,8 @@
 // 否则，返回一个空列表。
 
 
-// 220ms
-// 53.1MB
+// 204ms
+// 52.7MB
 var OrderedStream = function (n) {
     this.ptr = 1;
     this.streamArr = new Array(n + 1).fill(null);
@@ -21,6 +21,9 @@ var OrderedStream = function (n) {
    */
   OrderedStream.prototype.insert = function (idKey, value) {
     this.streamArr[idKey] = value;
+    if(idKey > this.ptr){
+        return []
+    }
     const ans = [];
     while (this.streamArr[this.ptr]) {
       ans.push(this.streamArr[this.ptr] );
