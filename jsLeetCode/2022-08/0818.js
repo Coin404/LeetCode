@@ -13,9 +13,9 @@
 // maxFreq 表示最大出现次数
 
 // 以nums[i]结尾的数组前缀符合一下三个之一
-// 最大次数为 1 ，随便删
-// 次数都是 maxFreq maxFreq-1 最大值出现一次，删除一个最大
-// 除开一个数 其他都是 maxFreq 删除次数为1的
+// 1，最大次数为 1 ，随便删
+// 2，次数都是 maxFreq maxFreq-1 最大值出现一次，删除一个最大
+// 2，除开一个数 其他都是 maxFreq 删除次数为1的
 var maxEqualFreq = function(nums) {
     // 频度数组
     const freq = new Map();
@@ -40,6 +40,7 @@ var maxEqualFreq = function(nums) {
         }
         freq.set(count.get(nums[i]), freq.get(count.get(nums[i])) + 1);
         // 符合条件的数
+        // 最大频度为一  2条件的数总和为数组长度  3条件的数总和为数组长度
         const ok = maxFreq === 1 ||
                 freq.get(maxFreq) * maxFreq + freq.get(maxFreq - 1) * (maxFreq - 1) === i + 1 && freq.get(maxFreq) === 1 ||
                 freq.get(maxFreq) * maxFreq + 1 === i + 1 && freq.get(1) === 1;
