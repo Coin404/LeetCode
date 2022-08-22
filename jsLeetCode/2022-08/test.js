@@ -10,3 +10,5 @@ const newArray = arr.map( item =>{
 
 console.log(arr)
 console.log(newArray)
+
+console.log(1 << 4)
