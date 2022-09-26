@@ -10,3 +10,6 @@ nums.sort((a,b)=>{
 })
 
 console.log(nums)
+
+
+// 状态压缩
